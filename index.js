@@ -16,7 +16,7 @@ express()
   .get('/g/', (req, res) => res.json({ method: "こんにちは、getさん" }))
   .post('/p/', (req, res) => res.json({ method: "こんにちは、postさん" }))
   .post("/hook/", line.middleware(config), (req, res) => linebot(req, res))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function lineBot(req, res) {
   res.status(200).end();
