@@ -7,4 +7,6 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .get('/g/', (req, res) => res.json({ method: "こんにちは、getさん" })) // 追加
+  .post('/p/', (req, res) => res.json({ method: "こんにちは、postさん" })) // 追加
+  .listen(PORT, () => console.log(`Listening on ${PORT}`))
