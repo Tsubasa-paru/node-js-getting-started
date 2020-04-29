@@ -19,6 +19,6 @@ express()
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
 function lineBot(req, res) {
-  res.json({ test: "hook" });
+  res.status(200).end();
   console.log("pass");
 }
