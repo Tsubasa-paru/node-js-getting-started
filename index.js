@@ -20,7 +20,7 @@ express()
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function lineBot(req, res) {
-  res.status(200).end();
+  //res.status(200).end();
   const events = req.body.events;
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
