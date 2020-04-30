@@ -26,7 +26,8 @@ function lineBot(req, res) {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     promises.push(
-      echoman(ev)
+      //echoman(ev)
+      getmenu(ev)
     );
   }
   Promise.all(promises).then(console.log("pass"));
@@ -38,5 +39,36 @@ async function echoman(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+  })
+}
+
+async function getmenu(ev) {
+  return client.replyMessage(ev.replyToken, {
+    {
+      "type": "template",
+      "altText": "this is a buttons template",
+      "template": {
+        "type": "buttons",
+        "actions": [
+          {
+            "type": "uri",
+            "label": "スクエアステップ",
+            "uri": "https://youtu.be/3O3mlcSgONE"
+          },
+          {
+            "type": "uri",
+            "label": "google検索",
+            "uri": "http://www.google.com"
+          }
+           {
+            "type": "uri",
+            "label": "加速度センサー",
+            "uri": "https://ksnk.jp/testgyro.html"
+          },
+        ],
+        "title": "おうちスクエアステップ案",
+        "text": "メニューです"
+      }
+    }
   })
 }
