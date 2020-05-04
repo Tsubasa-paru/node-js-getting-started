@@ -2,7 +2,7 @@ const SHEET_ID = "1fULzAdOs-BwxxjxDIUbqEV_-wMOBdXn5f-SHw2IV5CE";
 const SHEET_NAME = "test";
 
 function getSheetData() {
-  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_ID);
+  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME);
   var data = sheet.getDataRange().getValues();
   return data.map(function (row) { return { key: row[0], value: row[1], type: row[2] }; });
 }
@@ -35,8 +35,8 @@ function lineBot(req, res) {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     promises.push(
-      echoman(ev)
-      //getmenu(ev)
+      echoman(ev),
+      getmenu(ev)
     );
   }
   Promise.all(promises).then(console.log("pass"));
