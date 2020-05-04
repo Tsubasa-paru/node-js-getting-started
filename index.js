@@ -48,7 +48,7 @@ async function echoman(ev) {
   var reply_text = getSheetData();
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
