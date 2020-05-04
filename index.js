@@ -1,3 +1,12 @@
+const SHEET_ID = "1fULzAdOs-BwxxjxDIUbqEV_-wMOBdXn5f-SHw2IV5CE";
+const SHEET_NAME = "test";
+
+function getSheetData() {
+  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_ID);
+  var data = sheet.getDataRange().getValues();
+  return data.map(function (row) { return { key: row[0], value: row[1], type: row[2] }; });
+}
+
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
@@ -6,7 +15,7 @@ const config = {
   channelAccessToken: process.env.ACCESS_TOKEN,
   channelSecret: process.env.SECRET_KEY
 };
-const client = new line.Client(config); // 追加
+const client = new line.Client(config);
 
 express()
   .use(express.static(path.join(__dirname, "public")))
@@ -36,9 +45,10 @@ function lineBot(req, res) {
 // 追加
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
+  var reply_text = getSheetData();
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
