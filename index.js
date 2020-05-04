@@ -93,8 +93,8 @@ function lineBot(req, res) {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     promises.push(
-      echoman(ev),
-      getmenu(ev)
+      echoman(ev)
+      //getmenu(ev)
     );
   }
   Promise.all(promises).then(console.log("pass"));
