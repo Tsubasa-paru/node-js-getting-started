@@ -1,10 +1,68 @@
-const SHEET_ID = "1fULzAdOs-BwxxjxDIUbqEV_-wMOBdXn5f-SHw2IV5CE";
-const SHEET_NAME = "test";
+const fs = require('fs');
+const readline = require('readline');
+const { google } = require('googleapis');
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+const TOKEN_PATH = 'token.json';
 
-function getSheetData() {
-  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME);
-  var data = sheet.getDataRange().getValues();
-  return data.map(function (row) { return { key: row[0], value: row[1], type: row[2] }; });
+fs.readFile('credentials.json', (err, content) => {
+  if (err) return console.log('Error loading client secret file:', err);
+  authorize(JSON.parse(content), listMajors);
+});
+
+function authorize(credentials, callback) {
+  const { client_secret, client_id, redirect_uris } = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id, client_secret, redirect_uris[0]);
+
+  fs.readFile(TOKEN_PATH, (err, token) => {
+    if (err) return getNewToken(oAuth2Client, callback);
+    oAuth2Client.setCredentials(JSON.parse(token));
+    callback(oAuth2Client);
+  });
+}
+
+function getNewToken(oAuth2Client, callback) {
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+  });
+  console.log('Authorize this app by visiting this url:', authUrl);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  rl.question('Enter the code from that page here: ', (code) => {
+    rl.close();
+    oAuth2Client.getToken(code, (err, token) => {
+      if (err) return console.error('Error while trying to retrieve access token', err);
+      oAuth2Client.setCredentials(token);
+      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+        if (err) return console.error(err);
+        console.log('Token stored to', TOKEN_PATH);
+      });
+      callback(oAuth2Client);
+    });
+  });
+}
+
+function listMajors(auth) {
+  const sheets = google.sheets({ version: 'v4', auth });
+  sheets.spreadsheets.values.get({
+    spreadsheetId: '1fULzAdOs-BwxxjxDIUbqEV_-wMOBdXn5f-SHw2IV5CE',
+    range: 'test!B2:C5',
+  }, (err, res) => {
+    if (err) return console.log('The API returned an error: ' + err);
+    const rows = res.data.values;
+    if (rows.length) {
+      //console.log('Name, Major:');
+      rows.map((row) => {
+        const reply_text = `${row[0]}, ${row[1]}`;
+        console.log(reply_text);
+      });
+    } else {
+      console.log('No data found.');
+    }
+  });
 }
 
 const express = require("express");
@@ -35,8 +93,8 @@ function lineBot(req, res) {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     promises.push(
-      echoman(ev)
-      //getmenu(ev)
+      echoman(ev),
+      getmenu(ev)
     );
   }
   Promise.all(promises).then(console.log("pass"));
@@ -45,10 +103,9 @@ function lineBot(req, res) {
 // 追加
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
-  //var reply_text = getSheetData();
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
