@@ -35,7 +35,7 @@ function lineBot(req, res) {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     promises.push(
-      echoman(ev),
+      echoman(ev)
       //getmenu(ev)
     );
   }
@@ -45,7 +45,7 @@ function lineBot(req, res) {
 // 追加
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
-  var reply_text = getSheetData();
+  //var reply_text = getSheetData();
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
