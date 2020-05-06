@@ -55,10 +55,14 @@ function listMajors(auth) {
     const rows = res.data.values;
     if (rows.length) {
       //console.log('Name, Major:');
-      rows.map((row) => {
-        const reply_text = `${row[0]}, ${row[1]}`;
-        console.log(reply_text);
-      });
+      const reply_text = `${rows[0][0]}`;
+      //console.log(reply_text);
+      //console.log(typeof (reply_text));
+      //rows.map((row) => {
+      //const reply_text = `${row}`;
+      //console.log(reply_text);
+      //console.log(typeof(reply_text));
+      //});
     } else {
       console.log('No data found.');
     }
