@@ -65,9 +65,10 @@ async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
   let data = read_csv(filename);
   //let reply_text = reply("おはよう", data);
+  let reply_text = ev.message.text;
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `${data[0][1]}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
