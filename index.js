@@ -13,12 +13,12 @@ function read_csv(file) {
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
-//const line = require("@line/bot-sdk"); //認証用
+const line = require("@line/bot-sdk"); //認証用
 const config = {
   channelAccessToken: process.env.ACCESS_TOKEN,
   channelSecret: process.env.SECRET_KEY
 };
-//const client = new line.Client(config); //認証用
+const client = new line.Client(config); //認証用
 
 express()
   .use(express.static(path.join(__dirname, "public")))
@@ -27,8 +27,8 @@ express()
   .get("/", (req, res) => res.render("pages/index"))
   .get("/g/", (req, res) => res.json({ method: "こんにちは、getさん" }))
   .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" }))
-  .post("/hook/", (req, res) => lineBot(req, res))
-  //.post("/hook/", line.middleware(config), (req, res) => lineBot(req, res)) //認証用
+  //.post("/hook/", (req, res) => lineBot(req, res))
+  .post("/hook/", line.middleware(config), (req, res) => lineBot(req, res)) //認証用
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function lineBot(req, res) {
@@ -52,7 +52,6 @@ async function echoman(ev) {
   var reply_text = read_csv(filename);
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    //"content": reply_text[0][1],
     text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
