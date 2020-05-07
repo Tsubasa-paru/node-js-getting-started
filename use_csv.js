@@ -8,7 +8,7 @@ function read_csv(file) {
     let res = csvSync(data);
     return res;
 }
-//console.log(read_csv(file));
+console.log(read_csv(file));
 
 function reply(text, file) {//こんにちはだけ判別してくれない
     let reply_text = "";
