@@ -64,7 +64,7 @@ function lineBot(req, res) {
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
   let data = read_csv(filename);
-  let reply_text = reply("123", data);
+  let reply_text = reply(ev.message.text.toString(), data);
   //let reply_text = ev.message.text;
   return client.replyMessage(ev.replyToken, {
     type: "text",
