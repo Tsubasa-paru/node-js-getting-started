@@ -17,7 +17,7 @@ function reply(text, file) {//こんにちはだけ判別してくれない
         //console.log(text == data[i][0]);
         if (text == data[i][0]) {
             //console.log(data[i][0]);
-            reply_text = data[i][0];
+            reply_text = data[i][1];
             break;
         }
     }

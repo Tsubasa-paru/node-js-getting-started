@@ -17,7 +17,7 @@ function reply(text, file) {//こんにちはだけ判別してくれない
     //console.log(text == data[i][0]);
     if (text == data[i][0]) {
       //console.log(data[i][0]);
-      reply_text = data[i][0];
+      reply_text = data[i][1];
       break;
     }
   }
@@ -64,7 +64,7 @@ function lineBot(req, res) {
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
   var data = read_csv(filename);
-  var reply_text = reply(ev.message.text, data);
+  var reply_text = reply("おはよう", data);
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
