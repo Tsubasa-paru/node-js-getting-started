@@ -8,7 +8,23 @@ function read_csv(file) {
     let res = csvSync(data);
     return res;
 }
-console.log(read_csv(file));
+//console.log(read_csv(file));
+
+function reply(text, file) {//こんにちはだけ判別してくれない
+    let reply_text = "";
+    const data = read_csv(file);
+    for (let i in data) {
+        //console.log(text == data[i][0]);
+        if (text == data[i][0]) {
+            //console.log(data[i][0]);
+            reply_text = data[i][0];
+            break;
+        }
+    }
+    return reply_text;
+}
+
+console.log(reply('おはよう', file));
 
 /*const fs = require('fs');
 const csv = require('csv');

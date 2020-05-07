@@ -10,6 +10,20 @@ function read_csv(file) {
 }
 //console.log(read_csv(file));
 
+function reply(text, file) {//こんにちはだけ判別してくれない
+  let reply_text = "";
+  const data = read_csv(file);
+  for (let i in data) {
+    //console.log(text == data[i][0]);
+    if (text == data[i][0]) {
+      //console.log(data[i][0]);
+      reply_text = data[i][0];
+      break;
+    }
+  }
+  return reply_text;
+}
+
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
@@ -49,10 +63,11 @@ function lineBot(req, res) {
 // 追加
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
-  var reply_text = read_csv(filename);
+  var data = read_csv(filename);
+  var reply_text = reply(ev.message.text, data);
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `${reply_text[0][0]}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
