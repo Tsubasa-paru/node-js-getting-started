@@ -52,7 +52,7 @@ async function echoman(ev) {
   var reply_text = read_csv(filename);
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${reply_text[0][0]}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
