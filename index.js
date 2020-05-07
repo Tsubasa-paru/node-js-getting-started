@@ -53,7 +53,7 @@ async function echoman(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "text",
     //"content": reply_text[0][1],
-    text: reply_text[0][0] + `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
 }
 
