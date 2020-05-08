@@ -53,8 +53,8 @@ function lineBot(req, res) {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     promises.push(
-      echoman(ev)
-      //getmenu(ev)
+      //echoman(ev)
+      getmenu(ev)
     );
   }
   Promise.all(promises).then(console.log("pass"));
@@ -85,9 +85,20 @@ async function getmenu(ev) {
           "uri": "https://youtu.be/3O3mlcSgONE"
         },
         {
-          "type": "uri",
-          "label": "google検索",
-          "uri": "http://www.google.com"
+          "type": "template",
+          "altText": "buttons template 2",
+          "template": {
+            "type": "buttons",
+            "actions": [
+              {
+                "type": "uri",
+                "label": "スクエアステップ",
+                "uri": "https://youtu.be/3O3mlcSgONE"
+              },
+            ],
+            "title": "おうちスクエアステップ案",
+            "text": "メニュー2です"
+          },
         },
         {
           "type": "uri",
