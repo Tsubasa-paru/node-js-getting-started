@@ -52,7 +52,7 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    if (ev.type === "text" && event.message.text == "メニュー") {
+    if (ev.type === "text" && ev.message.text == "メニュー") {
       promises.push(
         getmenu(ev)
       );
