@@ -52,24 +52,48 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    promises.push(
-      //echoman(ev)
-      getmenu(ev)
-    );
+    if (ev.type === "text" && event.message.text == "メニュー") {
+      promises.push(
+        getmenu(ev)
+      );
+    } else if (ev.type === "postback") {
+      if (JSON.parse(ev.postback.data).action === "menu2") {
+        promises.push(
+          second_menu(ev)
+        );
+      }
+    } else {
+      promises.push(
+        echoman(ev)
+      );
+    }
   }
   Promise.all(promises).then(console.log("pass"));
 }
 
-// 追加
-async function echoman(ev) {
-  const pro = await client.getProfile(ev.source.userId);
-  //let data = read_csv(filename);
-  let reply_text = reply(ev.message.text.toString(), filename);
-  //let reply_text = ev.message.text;
+async function second_menu(ev) {
   return client.replyMessage(ev.replyToken, {
-    type: "text",
-    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-  })
+    type: "template",
+    altText: "this is a buttons template",
+    template: {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "uri",
+          "label": "uec homepage",
+          "uri": "https://www.uec.ac.jp/"
+        },
+        {
+          "type": "uri",
+          "label": "boss",
+          "uri": "https://www.uec.ac.jp/research/information/opal-ring/0006120.html"
+        },
+      ],
+      "title": "電通大",
+      "text": "選択してください"
+    }
+  }
+  )
 }
 
 async function getmenu(ev) {
@@ -85,20 +109,10 @@ async function getmenu(ev) {
           "uri": "https://youtu.be/3O3mlcSgONE"
         },
         {
-          "type": "template",
-          "altText": "buttons template 2",
-          "template": {
-            "type": "buttons",
-            "actions": [
-              {
-                "type": "uri",
-                "label": "スクエアステップ",
-                "uri": "https://youtu.be/3O3mlcSgONE"
-              },
-            ],
-            "title": "おうちスクエアステップ案",
-            "text": "メニュー2です"
-          },
+          "type": "postback",
+          "label": "メニュー２",
+          "text": "次へ",
+          "data": JSON.stringify({ "action": "menu2" })
         },
         {
           "type": "uri",
@@ -111,4 +125,15 @@ async function getmenu(ev) {
     }
   }
   )
+}
+
+async function echoman(ev) {
+  const pro = await client.getProfile(ev.source.userId);
+  //let data = read_csv(filename);
+  let reply_text = reply(ev.message.text.toString(), filename);
+  //let reply_text = ev.message.text;
+  return client.replyMessage(ev.replyToken, {
+    type: "text",
+    text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+  })
 }
