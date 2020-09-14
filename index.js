@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csvSync = require('csv-parse/lib/sync'); // requiring sync module
 
-//const filename = 'reply.csv';
+const filename = 'reply.csv';
 
 function read_csv(file) {
   let data = fs.readFileSync(file);
@@ -129,7 +129,7 @@ async function getmenu(ev) {
 
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
-  const filename = pro.displayName + 'reply.csv';
+  //const filename = pro.displayName + 'reply.csv';
   //let data = read_csv(filename);
   let reply_text = reply(ev.message.text.toString(), filename);
   //let reply_text = ev.message.text;
