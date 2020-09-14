@@ -1,7 +1,9 @@
 const fs = require('fs');
 const csvSync = require('csv-parse/lib/sync'); // requiring sync module
 
-const filename = 'reply.csv';
+const user = await client.getProfile(ev.source.userId);
+const username = pro.displayName;
+const filename = username + '_reply.csv';
 
 function read_csv(file) {
   let data = fs.readFileSync(file);
