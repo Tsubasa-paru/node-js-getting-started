@@ -88,11 +88,11 @@ async function second_menu(ev) {
           "label": "boss",
           "uri": "https://www.uec.ac.jp/research/information/opal-ring/0006120.html"
         },
-        {
+        /*{
           "type": "image",
-          "originalContentUrl": "./つばさ_result.png",
-          "previewImageUrl": "./つばさ_result.png"
-        }
+          "originalContentUrl": "つばさ_result.png",
+          "previewImageUrl": "つばさ_result.png"
+        },*/
       ],
       "title": "電通大",
       "text": "選択してください"
@@ -116,7 +116,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "メニュー２",
-          "text": "次へ",
+          //"text": "次へ",
           "data": JSON.stringify({ "action": "menu2" })
         },
         {
