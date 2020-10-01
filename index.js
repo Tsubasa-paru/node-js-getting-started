@@ -129,8 +129,8 @@ async function getmenu(ev) {
 
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
-  //const filename = pro.displayName + 'reply.csv';
-  //let data = read_csv(filename);
+  const filename = pro.displayName + '_reply.csv';
+  let data = read_csv(filename);
   let reply_text = reply(ev.message.text.toString(), filename);
   //let reply_text = ev.message.text;
   return client.replyMessage(ev.replyToken, {
