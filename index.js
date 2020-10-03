@@ -79,8 +79,8 @@ function lineBot(req, res) {
 async function send_image(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "image",
-    originalContentUrl: "つばさ_result.png",
-    previewImageUrl: "つばさ_result.png"
+    originalContentUrl: "result.jpg",
+    previewImageUrl: "result.jpg"
   });
 }
 
