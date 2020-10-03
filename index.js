@@ -62,6 +62,11 @@ function lineBot(req, res) {
           second_menu(ev)
         );
       }
+      else if (JSON.parse(ev.postback.data).action === "image") {
+        promises.push(
+          send_image(ev)
+        );
+      }
     } else {
       promises.push(
         echoman(ev)
@@ -69,6 +74,14 @@ function lineBot(req, res) {
     }
   }
   Promise.all(promises).then(console.log("pass"));
+}
+
+async function send_image(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "image",
+    originalContentUrl: "つばさ_result.png",
+    previewImageUrl: "https://drive.google.com/file/d/1OcWWTs-ChfkEefOfW_9nrIux-vEgEC1T/view?usp=sharing"
+  });
 }
 
 async function second_menu(ev) {
@@ -89,9 +102,10 @@ async function second_menu(ev) {
           "uri": "https://www.uec.ac.jp/research/information/opal-ring/0006120.html"
         },
         {
-          "type": "image",
-          "originalContentUrl": "つばさ_result.png",
-          "previewImageUrl": "つばさ_result.png"
+          "type": "postback",
+          "label": "画像",
+          //"text": "次へ",
+          "data": JSON.stringify({ "action": "image" })
         },
       ],
       "title": "電通大",
