@@ -70,13 +70,23 @@ function lineBot(req, res) {
           send_image(ev)
         );
       }
-    } else {
+    }
+    else if (ev.type === "file") {
+      promises.push(
+        save_file(ev)
+      );
+    }
+    else {
       promises.push(
         echoman(ev)
       );
     }
   }
   Promise.all(promises).then(console.log("pass"));
+}
+
+async function save_file(ev) {
+  return fs.writeFileSync("./steps.csv", ev.file);
 }
 
 async function send_image(ev) {
