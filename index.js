@@ -1,5 +1,8 @@
 const fs = require('fs');
 const csvSync = require('csv-parse/lib/sync'); // requiring sync module
+var NCMB = require("ncmb");
+var ncmb = new NCMB("a044cf8e6e945d7e92493c2d739e0da050fc55b4134366094cd4311be2614b13",
+  "d29b85f46dc1dc8853c69cce381e140f750bbcc93de49b21878a935983e8634f");
 
 const filename = 'reply.csv';
 
@@ -79,8 +82,8 @@ function lineBot(req, res) {
 async function send_image(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "image",
-    originalContentUrl: "result.jpg",
-    previewImageUrl: "result.jpg"
+    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/%E3%81%A4%E3%81%B0%E3%81%95_result.png",
+    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/%E3%81%A4%E3%81%B0%E3%81%95_result.png"
   });
 }
 
