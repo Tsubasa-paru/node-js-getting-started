@@ -79,8 +79,8 @@ function lineBot(req, res) {
 async function send_image(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "image",
-    originalContentUrl: "https://cdn.shibe.online/shibes/907fed97467e36f3075211872d98f407398126c4.jpg",
-    previewImageUrl: "https://cdn.shibe.online/shibes/907fed97467e36f3075211872d98f407398126c4.jpg"
+    originalContentUrl: "つばさ_result.png",
+    previewImageUrl: "つばさ_result.png"
   });
 }
 
