@@ -106,9 +106,9 @@ async function test(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('abc.txt', function (err, data) {
+  fs.readFile('https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/abc.txt', function (err, data) {
     if (err) throw err;
-    var name = "test.txt";
+    var name = "abc_p.txt";
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
