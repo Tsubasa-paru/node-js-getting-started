@@ -74,8 +74,8 @@ function lineBot(req, res) {
     //else if (ev.type === "file") {
     else if (ev.message.text == "test") {
       promises.push(
-        //save_file(ev)
-        test(ev)
+        save_file(ev)
+        //test(ev)
       );
     }
     else {
@@ -95,9 +95,9 @@ async function test(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('https://data.ac-illust.com/data/thumbnails/ec/ec0c4deb22d009d6ef5b4edbaa31888e_w.jpeg', function (err, data) {
+  fs.readFile('https://1.bp.blogspot.com/-aE1d5IM9FuY/XwkxlUXaVYI/AAAAAAABaC4/5Y9ueDFkL-ktyOHXczaj5dvlCXieT-pigCNcBGAsYHQ/s180-c/syougatsu_mark_mochi.png', function (err, data) {
     if (err) throw err;
-    var name = "abc.jpeg";
+    var name = "abc.png";
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
