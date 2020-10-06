@@ -71,7 +71,8 @@ function lineBot(req, res) {
         );
       }
     }
-    else if (ev.type === "file") {
+    //else if (ev.type === "file") {
+    else if (ev.message.text === "test") {
       promises.push(
         save_file(ev)
       );
@@ -86,7 +87,17 @@ function lineBot(req, res) {
 }
 
 async function save_file(ev) {
-  return fs.writeFileSync("./steps.csv", ev.file);
+  fs.readFile('https://data.ac-illust.com/data/thumbnails/ec/ec0c4deb22d009d6ef5b4edbaa31888e_w.jpeg', function (err, data) {
+    if (err) throw err;
+    var name = "abc.jpg";
+    ncmb.File.upload(name, data)
+      .then(function (data) {
+        // アップロード後処理
+      })
+      .catch(function (err) {
+        // エラー処理
+      });
+  });
 }
 
 async function send_image(ev) {
