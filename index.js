@@ -81,7 +81,8 @@ function lineBot(req, res) {
     }
     else {
       promises.push(
-        echoman(ev)
+        talk(ev)
+        //echoman(ev)
       );
     }
   }
@@ -106,24 +107,21 @@ async function test(ev) {
   })*/
 }
 
-/*async function man_file(ev) {
-  client.getMessageContent(ev.message..id)
-    .then((stream) => {
-      stream.on('data', (chunk) => {
-        return client.replyMessage(ev.replyToken, {
-          type: "text",
-          text: `succeeded`
-        })
-      });
-      stream.on('error', (err) => {
-        // error handling
-        return client.replyMessage(ev.replyToken, {
-          type: "text",
-          text: `error`
-        })
+async function talk(ev) {
+  const fetch = require('node-fetch');
+
+  const params = new URLSearchParams();
+  params.append('apikey', "DZZguM1BiGS7wdbTinRibmkUlJWYNoFs");
+  params.append('query', ev.message.text);
+
+  fetch("https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk", { method: 'POST', body: params })
+    .then(Response => {
+      Response.json().then(Data => {
+        message
+          .reply(Data.results[0].reply);
       });
     });
-}*/
+}
 
 async function save_file(ev) {
   fs.readFile('abc.txt', function (err, data) {
