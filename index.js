@@ -95,23 +95,23 @@ async function test(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('https://1.bp.blogspot.com/-aE1d5IM9FuY/XwkxlUXaVYI/AAAAAAABaC4/5Y9ueDFkL-ktyOHXczaj5dvlCXieT-pigCNcBGAsYHQ/s180-c/syougatsu_mark_mochi.png', function (err, data) {
+  fs.readFile('https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/result.jpg', function (err, data) {
     if (err) throw err;
-    var name = "abc.png";
+    var name = "abc.jpg";
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
-        return client.replyMessage(ev.replyToken, {
+        /*return client.replyMessage(ev.replyToken, {
           type: "text",
           text: `succeeded`
-        })
+        })*/
       })
       .catch(function (err) {
         // エラー処理
-        return client.replyMessage(ev.replyToken, {
+        /*return client.replyMessage(ev.replyToken, {
           type: "text",
           text: `error`
-        })
+        })*/
       });
   });
 }
