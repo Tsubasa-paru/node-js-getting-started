@@ -74,8 +74,8 @@ function lineBot(req, res) {
     //else if (ev.type === "file") {
     else if (ev.message.text == "test") {
       promises.push(
-        //save_file(ev)
-        test(ev)
+        save_file(ev)
+        //test(ev)
       );
     }
     else {
@@ -106,7 +106,7 @@ async function test(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/result.jpg', function (err, data) {
+  fs.readFile('/storage/9016-4EF8/Pictures/Instagram/IMG_20200228_162954_280.jpg', function (err, data) {
     if (err) throw err;
     var name = "abc.jpg";
     ncmb.File.upload(name, data)
