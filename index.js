@@ -106,7 +106,7 @@ async function test(ev) {
   })*/
 }
 
-async function man_file(ev) {
+/*async function man_file(ev) {
   client.getMessageContent(ev.message..id)
     .then((stream) => {
       stream.on('data', (chunk) => {
@@ -123,7 +123,7 @@ async function man_file(ev) {
         })
       });
     });
-}
+}*/
 
 async function save_file(ev) {
   fs.readFile('abc.txt', function (err, data) {
