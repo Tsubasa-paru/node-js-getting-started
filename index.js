@@ -74,7 +74,8 @@ function lineBot(req, res) {
     //else if (ev.type === "file") {
     else if (ev.message.text == "test") {
       promises.push(
-        save_file(ev)
+        man_file(ev)
+        //save_file(ev)
         //test(ev)
       );
     }
@@ -105,8 +106,27 @@ async function test(ev) {
   })*/
 }
 
+async function man_file(ev) {
+  client.getMessageContent(ev.message..id)
+    .then((stream) => {
+      stream.on('data', (chunk) => {
+        return client.replyMessage(ev.replyToken, {
+          type: "text",
+          text: `succeeded`
+        })
+      });
+      stream.on('error', (err) => {
+        // error handling
+        return client.replyMessage(ev.replyToken, {
+          type: "text",
+          text: `error`
+        })
+      });
+    });
+}
+
 async function save_file(ev) {
-  fs.readFile('https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/abc.txt', function (err, data) {
+  fs.readFile('abc.txt', function (err, data) {
     if (err) throw err;
     var name = "abc_p.txt";
     ncmb.File.upload(name, data)
