@@ -89,7 +89,7 @@ function lineBot(req, res) {
 async function save_file(ev) {
   fs.readFile('https://data.ac-illust.com/data/thumbnails/ec/ec0c4deb22d009d6ef5b4edbaa31888e_w.jpeg', function (err, data) {
     if (err) throw err;
-    var name = "abc.jpg";
+    var name = "abc.jpeg";
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
