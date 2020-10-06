@@ -74,7 +74,8 @@ function lineBot(req, res) {
     //else if (ev.type === "file") {
     else if (ev.message.text == "test") {
       promises.push(
-        save_file(ev)
+        //save_file(ev)
+        test(ev)
       );
     }
     else {
@@ -84,6 +85,13 @@ function lineBot(req, res) {
     }
   }
   Promise.all(promises).then(console.log("pass"));
+}
+
+async function test(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "text",
+    text: `succeeded`
+  })
 }
 
 async function save_file(ev) {
