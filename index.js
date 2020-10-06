@@ -74,8 +74,8 @@ function lineBot(req, res) {
     //else if (ev.type === "file") {
     else if (ev.message.text == "test") {
       promises.push(
-        man_file(ev)
-        //save_file(ev)
+        //man_file(ev)
+        save_file(ev)
         //test(ev)
       );
     }
