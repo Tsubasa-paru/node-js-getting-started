@@ -115,12 +115,12 @@ async function talk(ev) {
   params.append('query', ev.message.text);
 
   fetch("https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk", { method: 'POST', body: params })
-    .then(Response => {
-      Response.json().then(Data => {
-        message
-          .reply(Data.results[0].reply);
-      });
-    });
+    .then(function () {
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: "aaa"
+      })
+    })
 }
 
 async function save_file(ev) {
