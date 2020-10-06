@@ -106,23 +106,23 @@ async function test(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('/storage/9016-4EF8/Pictures/Instagram/IMG_20200228_162954_280.jpg', function (err, data) {
+  fs.readFile('abc.txt', function (err, data) {
     if (err) throw err;
-    var name = "abc.jpg";
+    var name = "test.txt";
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
-        /*return client.replyMessage(ev.replyToken, {
+        return client.replyMessage(ev.replyToken, {
           type: "text",
           text: `succeeded`
-        })*/
+        })
       })
       .catch(function (err) {
         // エラー処理
-        /*return client.replyMessage(ev.replyToken, {
+        return client.replyMessage(ev.replyToken, {
           type: "text",
           text: `error`
-        })*/
+        })
       });
   });
 }
