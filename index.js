@@ -88,10 +88,21 @@ function lineBot(req, res) {
 }
 
 async function test(ev) {
-  return client.replyMessage(ev.replyToken, {
+  ncmb.File.delete("abc.txt")
+    .then(function () {
+      // 削除後処理
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `succeeded`
+      })
+    })
+    .catch(function (err) {
+      // エラー処理
+    });
+  /*return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `succeeded`
-  })
+  })*/
 }
 
 async function save_file(ev) {
