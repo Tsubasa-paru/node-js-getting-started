@@ -72,7 +72,7 @@ function lineBot(req, res) {
       }
     }
     //else if (ev.type === "file") {
-    else if (ev.message.text === "test") {
+    else if (ev.message.text == "test") {
       promises.push(
         save_file(ev)
       );
@@ -93,9 +93,17 @@ async function save_file(ev) {
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
+        return client.replyMessage(ev.replyToken, {
+          type: "text",
+          text: `succeeded`
+        })
       })
       .catch(function (err) {
         // エラー処理
+        return client.replyMessage(ev.replyToken, {
+          type: "text",
+          text: `error`
+        })
       });
   });
 }
