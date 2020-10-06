@@ -117,7 +117,6 @@ async function talk(ev) {
   fetch("https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk", { method: 'POST', body: params })
     .then(Response => {
       Response.json().then(Data => {
-        message
         return client.replyMessage(ev.replyToken, {
           type: "text",
           text: Data.results[0].reply
