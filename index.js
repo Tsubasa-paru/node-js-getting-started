@@ -241,11 +241,17 @@ async function echoman(ev) {
   let data = read_csv(filename);
   let res = data.push(ev.message.text.toString())
 
-  fs.writeFile('out.csv', res, function (err) {
-    if (err) {
-    } else {
-    }
-  })
+  fs.readFile(res, function (err, data) {
+    if (err) throw err;
+    var name = "abc.txt";
+    ncmb.File.upload(name, data)
+      .then(function (data) {
+        // アップロード後処理
+      })
+      .catch(function (err) {
+        // エラー処理
+      });
+  });
 
   let reply_text = reply(ev.message.text.toString(), filename);
   //let reply_text = ev.message.text;
