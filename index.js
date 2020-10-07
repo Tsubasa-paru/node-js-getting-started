@@ -136,7 +136,7 @@ async function save_file(ev) {
       stream.on('data', (chunk) => {
         fs.readFile(chunk, function (err, data) {
           if (err) throw err;
-          var name = "file.png";
+          var name = "file.jpg";
           ncmb.File.upload(name, data)
             .then(function (data) {
               // アップロード後処理
