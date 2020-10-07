@@ -71,7 +71,7 @@ function lineBot(req, res) {
         );
       }
     }
-    else if (ev.type === "file") {
+    else if (ev.message.type === "file") {
       //else if (ev.message.text == "test") {
       promises.push(
         //man_file(ev)
@@ -79,7 +79,7 @@ function lineBot(req, res) {
         test(ev)
       );
     }
-    else if (ev.type === "text") {
+    else if (ev.type === "message") {
       promises.push(
         talk(ev)
       );
