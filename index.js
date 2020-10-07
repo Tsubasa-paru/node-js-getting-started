@@ -75,14 +75,19 @@ function lineBot(req, res) {
       //else if (ev.message.text == "test") {
       promises.push(
         //man_file(ev)
-        save_file(ev)
-        //test(ev)
+        //save_file(ev)
+        test(ev)
+      );
+    }
+    else if (ev.type === "text") {
+      promises.push(
+        talk(ev)
       );
     }
     else {
       promises.push(
-        talk(ev)
-        //echoman(ev)
+        //talk(ev)
+        echoman(ev)
       );
     }
   }
@@ -90,7 +95,7 @@ function lineBot(req, res) {
 }
 
 async function test(ev) {
-  ncmb.File.delete("abc.txt")
+  /*ncmb.File.delete("abc.txt")
     .then(function () {
       // 削除後処理
       return client.replyMessage(ev.replyToken, {
@@ -100,11 +105,11 @@ async function test(ev) {
     })
     .catch(function (err) {
       // エラー処理
-    });
-  /*return client.replyMessage(ev.replyToken, {
+    });*/
+  return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: `succeeded`
-  })*/
+    text: `this is a file`
+  })
 }
 
 async function talk(ev) {
