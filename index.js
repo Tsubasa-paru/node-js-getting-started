@@ -71,8 +71,8 @@ function lineBot(req, res) {
         );
       }
     }
-    //else if (ev.type === "file") {
-    else if (ev.message.text == "test") {
+    else if (ev.type === "file") {
+      //else if (ev.message.text == "test") {
       promises.push(
         //man_file(ev)
         save_file(ev)
@@ -126,9 +126,9 @@ async function talk(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('abc.txt', function (err, data) {
+  fs.readFile('https://api.line.me/v2/bot/message/${req.body.events[0].message.id}/content', function (err, data) {
     if (err) throw err;
-    var name = "abc_p.txt";
+    var name = "abc.pdf";
     ncmb.File.upload(name, data)
       .then(function (data) {
         // アップロード後処理
