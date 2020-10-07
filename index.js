@@ -75,8 +75,8 @@ function lineBot(req, res) {
       //else if (ev.message.text == "test") {
       promises.push(
         //man_file(ev)
-        //save_file(ev)
-        test(ev)
+        save_file(ev)
+        //test(ev)
       );
     }
     else if (ev.type === "message") {
@@ -131,25 +131,37 @@ async function talk(ev) {
 }
 
 async function save_file(ev) {
-  fs.readFile('https://api.line.me/v2/bot/message/${req.body.events[0].message.id}/content', function (err, data) {
-    if (err) throw err;
-    var name = "abc.pdf";
-    ncmb.File.upload(name, data)
-      .then(function (data) {
-        // アップロード後処理
+  client.getMessageContent(ev.message.id)
+    .then((stream) => {
+      stream.on('data', (chunk) => {
+        fs.readFile(chunk, function (err, data) {
+          if (err) throw err;
+          var name = "abc.pdf";
+          ncmb.File.upload(name, data)
+            .then(function (data) {
+              // アップロード後処理
+              return client.replyMessage(ev.replyToken, {
+                type: "text",
+                text: `succeeded`
+              })
+            })
+            .catch(function (err) {
+              // エラー処理
+              return client.replyMessage(ev.replyToken, {
+                type: "text",
+                text: `upload error`
+              })
+            });
+        });
+      });
+      stream.on('error', (err) => {
+        // error handling
         return client.replyMessage(ev.replyToken, {
           type: "text",
-          text: `succeeded`
-        })
-      })
-      .catch(function (err) {
-        // エラー処理
-        return client.replyMessage(ev.replyToken, {
-          type: "text",
-          text: `error`
+          text: `file error`
         })
       });
-  });
+    });
 }
 
 async function send_image(ev) {
