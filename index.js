@@ -81,8 +81,8 @@ function lineBot(req, res) {
     }
     else if (ev.type === "message") {
       promises.push(
-        //talk(ev)
-        echoman(ev)
+        talk(ev)
+        //echoman(ev)
       );
     }
     else {
@@ -239,20 +239,7 @@ async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
   const filename = pro.displayName + '_reply.csv';
   let data = read_csv(filename);
-  let res = data.push(ev.message.text.toString())
-
-  fs.readFile(res, function (err, data) {
-    if (err) throw err;
-    var name = "abc.txt";
-    ncmb.File.upload(name, data)
-      .then(function (data) {
-        // アップロード後処理
-      })
-      .catch(function (err) {
-        // エラー処理
-      });
-  });
-
+  //let res = data.push(ev.message.text.toString())
   let reply_text = reply(ev.message.text.toString(), filename);
   //let reply_text = ev.message.text;
   return client.replyMessage(ev.replyToken, {
