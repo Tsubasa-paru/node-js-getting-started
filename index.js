@@ -81,7 +81,8 @@ function lineBot(req, res) {
     }
     else if (ev.type === "message") {
       promises.push(
-        talk(ev)
+        //talk(ev)
+        echoman(ev)
       );
     }
     else {
@@ -238,6 +239,12 @@ async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
   const filename = pro.displayName + '_reply.csv';
   let data = read_csv(filename);
+  let res = data.push(ev.message.text.toString())
+  csv.stringify(res, (error, output) => {
+    fs.writeFile('out.csv', output, (error) => {
+      //console.log('処理データをCSV出力しました。');
+    })
+  })
   let reply_text = reply(ev.message.text.toString(), filename);
   //let reply_text = ev.message.text;
   return client.replyMessage(ev.replyToken, {
