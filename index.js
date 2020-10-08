@@ -114,17 +114,17 @@ async function test(ev) {
   })*/
   var Log = ncmb.Datastore("Log");
   var log = new Log();
-  log.set("test", "test")
-    //.set("message", ev.message.text)
-    .save()
-    .then(function (log) {
+  log.set("test", "test");
+  //.set("message", ev.message.text)
+  log.save()
+    .then(function () {
       // 保存後の処理
       return client.replyMessage(ev.replyToken, {
         type: "text",
         text: `succeeded`
       })
     })
-    .catch(function (err) {
+    .catch(function () {
       // エラー処理
       return client.replyMessage(ev.replyToken, {
         type: "text",
