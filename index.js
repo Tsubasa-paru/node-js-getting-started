@@ -114,8 +114,8 @@ async function test(ev) {
   })*/
   var Log = ncmb.DataStore("Log");
   var log = new Log();
-  log.set("test", "test");
-  //.set("message", ev.message.text)
+  log.set("user", (await client.getProfile(ev.source.userId)).displayName)
+    .set("message", ev.message.text)
   log.save()
     .then(function () {
       // 保存後の処理
