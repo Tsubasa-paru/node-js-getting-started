@@ -56,9 +56,6 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    /*promises.push(
-      store_log(ev)
-    )*/
     if (ev.type === "message" && ev.message.text == "メニュー") {
       promises.push(
         getmenu(ev)
@@ -101,8 +98,8 @@ function lineBot(req, res) {
   Promise.all(promises).then(console.log("pass"));
 }
 
-async function test(ev) {
-  /*ncmb.File.delete("abc.txt")
+/*async function test(ev) {
+  ncmb.File.delete("abc.txt")
     .then(function () {
       // 削除後処理
       return client.replyMessage(ev.replyToken, {
@@ -116,9 +113,27 @@ async function test(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `this is a file`
-  })*/
-
-}
+  })
+  var Log = ncmb.DataStore("Log");
+  var log = new Log();
+  log.set("user", (await client.getProfile(ev.source.userId)).displayName)
+    .set("message", ev.messag.text)
+  log.save()
+    .then(function () {
+      // 保存後の処理
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `succeeded`
+      })
+    })
+    .catch(function () {
+      // エラー処理
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `error`
+      })
+    });
+}*/
 
 async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
