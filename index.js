@@ -93,9 +93,10 @@ function lineBot(req, res) {
         echoman(ev)
       );
     }
-    log.set("user", await client.getProfile(ev.source.userId).displayName)
+    /*log.set("user", await client.getProfile(ev.source.userId).displayName)
       .set("message", ev.message)
       .save()
+      */
   }
   Promise.all(promises).then(console.log("pass"));
 }
