@@ -57,10 +57,6 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    log.set("user", await client.getProfile(ev.source.userId).displayName)
-      .set("message", ev.message)
-      .save()
-
     if (ev.type === "message" && ev.message.text == "メニュー") {
       promises.push(
         getmenu(ev)
@@ -97,6 +93,9 @@ function lineBot(req, res) {
         echoman(ev)
       );
     }
+    log.set("user", await client.getProfile(ev.source.userId).displayName)
+      .set("message", ev.message)
+      .save()
   }
   Promise.all(promises).then(console.log("pass"));
 }
