@@ -139,7 +139,7 @@ async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
-    .set("message", ev.messag.text)
+    .set("message", ev.message.text)
   log.save()
     .then(function () {
       // 保存後の処理
@@ -176,7 +176,7 @@ async function talk(ev) {
   //store_log(ev);
 }
 
-async function save_file(ev) {
+/*async function save_file(ev) {
   client.getMessageContent(ev.message.id)
     .then((stream) => {
       stream.on('data', (chunk) => {
@@ -228,7 +228,7 @@ async function save_file(ev) {
         })
       });
     });
-}
+}*/
 
 async function send_image(ev) {
   return client.replyMessage(ev.replyToken, {
