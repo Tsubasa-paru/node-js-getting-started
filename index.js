@@ -157,7 +157,7 @@ async function talk(ev) {
   store_log(ev);
 }
 
-async function save_file(ev) {
+/*async function save_file(ev) {
   client.getMessageContent(ev.message.id)
     .then((stream) => {
       stream.on('data', (chunk) => {
@@ -209,7 +209,7 @@ async function save_file(ev) {
         })
       });
     });
-}
+}*/
 
 async function send_image(ev) {
   return client.replyMessage(ev.replyToken, {
