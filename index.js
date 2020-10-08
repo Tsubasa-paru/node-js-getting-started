@@ -157,7 +157,7 @@ async function talk(ev) {
         })
       });
     });
-  store_log(ev);
+  //store_log(ev);
 }
 
 async function save_file(ev) {
@@ -184,7 +184,7 @@ async function save_file(ev) {
               text: `error`
             })
           });
-        /*fs.readFile(chunk, function (err, data) {
+        fs.readFile(chunk, function (err, data) {
           if (err) throw err;
           var name = "file.jpg";
           ncmb.File.upload(name, data)
@@ -202,7 +202,7 @@ async function save_file(ev) {
                 text: `upload error`
               })
             });
-        });*/
+        });
       });
       stream.on('error', (err) => {
         // error handling
