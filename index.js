@@ -3,6 +3,7 @@ const csvSync = require('csv-parse/lib/sync'); // requiring sync module
 const NCMB = require('ncmb');
 const ncmb = new NCMB("a044cf8e6e945d7e92493c2d739e0da050fc55b4134366094cd4311be2614b13",
   "d29b85f46dc1dc8853c69cce381e140f750bbcc93de49b21878a935983e8634f");
+const stream = require("stream");
 
 const filename = 'reply.csv';
 
@@ -115,7 +116,7 @@ async function test(ev) {
   var Log = ncmb.DataStore("Log");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
-    .set("message", ev.message.text)
+    .set("message", ev.message)
   log.save()
     .then(function () {
       // 保存後の処理
