@@ -112,7 +112,7 @@ async function test(ev) {
     type: "text",
     text: `this is a file`
   })*/
-  var Log = ncmb.Datastore("Log");
+  var Log = ncmb.DataStore("Log");
   var log = new Log();
   log.set("test", "test");
   //.set("message", ev.message.text)
