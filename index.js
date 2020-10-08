@@ -139,7 +139,7 @@ async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
-    .set("message", ev.message.text)
+    .set("message", ev.message)
   log.save()
     .then(function () {
       // 保存後の処理
