@@ -56,9 +56,9 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    promises.push(
+    /*promises.push(
       store_log(ev)
-    )
+    )*/
     if (ev.type === "message" && ev.message.text == "メニュー") {
       promises.push(
         getmenu(ev)
@@ -85,9 +85,9 @@ function lineBot(req, res) {
     }
     else if (ev.type === "message") {
       promises.push(
-        //talk(ev)
+        talk(ev)
         //echoman(ev)
-        test(ev)
+        //test(ev)
       );
     }
     else {
@@ -157,6 +157,7 @@ async function talk(ev) {
         })
       });
     });
+  store_log(ev);
 }
 
 async function save_file(ev) {
