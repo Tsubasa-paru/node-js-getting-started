@@ -56,6 +56,9 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
+    promises.push(
+      store_log(ev)
+    )
     if (ev.type === "message" && ev.message.text == "メニュー") {
       promises.push(
         getmenu(ev)
@@ -113,6 +116,10 @@ async function test(ev) {
     type: "text",
     text: `this is a file`
   })*/
+
+}
+
+async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
@@ -156,7 +163,27 @@ async function save_file(ev) {
   client.getMessageContent(ev.message.id)
     .then((stream) => {
       stream.on('data', (chunk) => {
-        fs.readFile(chunk, function (err, data) {
+        var File = ncmb.DataStore("file");
+        var file = new File();
+        log.set("user", (await client.getProfile(ev.source.userId)).displayName)
+          .set("file", chunk)
+          .set("uri", "https://api-data.line.me/v2/bot/message/" + ev.message.id + "/content")
+        log.save()
+          .then(function () {
+            // 保存後の処理
+            return client.replyMessage(ev.replyToken, {
+              type: "text",
+              text: `succeeded`
+            })
+          })
+          .catch(function () {
+            // エラー処理
+            return client.replyMessage(ev.replyToken, {
+              type: "text",
+              text: `error`
+            })
+          });
+        /*fs.readFile(chunk, function (err, data) {
           if (err) throw err;
           var name = "file.jpg";
           ncmb.File.upload(name, data)
@@ -174,7 +201,7 @@ async function save_file(ev) {
                 text: `upload error`
               })
             });
-        });
+        });*/
       });
       stream.on('error', (err) => {
         // error handling
