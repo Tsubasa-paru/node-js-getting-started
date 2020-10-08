@@ -85,9 +85,10 @@ function lineBot(req, res) {
     }
     else if (ev.type === "message") {
       promises.push(
-        talk(ev)
+        //talk(ev)
         //echoman(ev)
         //test(ev)
+        store_log(ev)
       );
     }
     else {
@@ -123,7 +124,7 @@ async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
-    .set("message", ev.message)
+    .set("message", ev.messag.text)
   log.save()
     .then(function () {
       // 保存後の処理
