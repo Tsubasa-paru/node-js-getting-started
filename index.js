@@ -114,9 +114,23 @@ async function test(ev) {
   })*/
   var Log = ncmb.Datastore("Log");
   var log = new Log();
-  log.set("user", "test")
-    .set("message", ev.message.text)
+  log.set("test", "test")
+    //.set("message", ev.message.text)
     .save()
+    .then(function (log) {
+      // 保存後の処理
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `succeeded`
+      })
+    })
+    .catch(function (err) {
+      // エラー処理
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `error`
+      })
+    });
 }
 
 async function talk(ev) {
