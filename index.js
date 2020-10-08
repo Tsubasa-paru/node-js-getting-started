@@ -98,7 +98,7 @@ function lineBot(req, res) {
   Promise.all(promises).then(console.log("pass"));
 }
 
-/*async function test(ev) {
+async function test(ev) {
   ncmb.File.delete("abc.txt")
     .then(function () {
       // 削除後処理
@@ -114,26 +114,7 @@ function lineBot(req, res) {
     type: "text",
     text: `this is a file`
   })
-  var Log = ncmb.DataStore("Log");
-  var log = new Log();
-  log.set("user", (await client.getProfile(ev.source.userId)).displayName)
-    .set("message", ev.messag.text)
-  log.save()
-    .then(function () {
-      // 保存後の処理
-      return client.replyMessage(ev.replyToken, {
-        type: "text",
-        text: `succeeded`
-      })
-    })
-    .catch(function () {
-      // エラー処理
-      return client.replyMessage(ev.replyToken, {
-        type: "text",
-        text: `error`
-      })
-    });
-}*/
+}
 
 async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
@@ -176,7 +157,7 @@ async function talk(ev) {
   store_log(ev);
 }
 
-/*async function save_file(ev) {
+async function save_file(ev) {
   client.getMessageContent(ev.message.id)
     .then((stream) => {
       stream.on('data', (chunk) => {
@@ -228,7 +209,7 @@ async function talk(ev) {
         })
       });
     });
-}*/
+}
 
 async function send_image(ev) {
   return client.replyMessage(ev.replyToken, {
