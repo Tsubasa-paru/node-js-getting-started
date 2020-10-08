@@ -81,8 +81,9 @@ function lineBot(req, res) {
     }
     else if (ev.type === "message") {
       promises.push(
-        talk(ev)
+        //talk(ev)
         //echoman(ev)
+        test(ev)
       );
     }
     else {
@@ -91,13 +92,6 @@ function lineBot(req, res) {
         echoman(ev)
       );
     }
-    /*
-    var Log = ncmb.Datastore("Log");
-    var log = new Log();  
-    log.set("user", await client.getProfile(ev.source.userId).displayName)
-      .set("message", ev.message)
-      .save()
-      */
   }
   Promise.all(promises).then(console.log("pass"));
 }
@@ -113,11 +107,16 @@ async function test(ev) {
     })
     .catch(function (err) {
       // エラー処理
-    });*/
+    });
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `this is a file`
-  })
+  })*/
+  var Log = ncmb.Datastore("Log");
+  var log = new Log();
+  log.set("user", "test")
+    .set("message", ev.message.text)
+    .save()
 }
 
 async function talk(ev) {
