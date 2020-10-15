@@ -58,9 +58,10 @@ function lineBot(req, res) {
     const ev = events[i];
     if (ev.message.text == "メニュー" || ev.message.type == "sticker") {
       promises.push(
-        getmenu(ev)
+        //getmenu(ev)
+        exercise_menu(ev)
       );
-    } else if (ev.type === "message") {
+    } else if (ev.type === "postback") {
       promises.push(
         test(ev)
       );
