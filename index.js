@@ -63,7 +63,8 @@ function lineBot(req, res) {
     } else if (ev.type == "postback") {
       if (JSON.parse(ev.postback.data).action == "exercise") {
         promises.push(
-          exercise_menu(ev)
+          test(ev)
+          //exercise_menu(ev)
         );
       } else if (JSON.parse(ev.postback.data).action == "send_image") {
         promises.push(
@@ -71,7 +72,8 @@ function lineBot(req, res) {
         );
       } else if (JSON.parse(ev.postback.data).action == "confirm") {
         promises.push(
-          confirm(ev)
+          test(ev)
+          //confirm(ev)
         );
       }
     }
