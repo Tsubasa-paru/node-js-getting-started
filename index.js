@@ -60,16 +60,16 @@ function lineBot(req, res) {
       promises.push(
         getmenu(ev)
       );
-    } else if (ev.type === "postback") {
-      if (JSON.parse(ev.postback.data).action === "exercise") {
+    } else if (ev.type == "postback") {
+      if (JSON.parse(ev.postback.data).action == "exercise") {
         promises.push(
           exercise_menu(ev)
         );
-      } else if (JSON.parse(ev.postback.data).action === "send_image") {
+      } else if (JSON.parse(ev.postback.data).action == "send_image") {
         promises.push(
           send_image(ev)
         );
-      } else if (JSON.parse(ev.postback.data).action === "confirm") {
+      } else if (JSON.parse(ev.postback.data).action == "confirm") {
         promises.push(
           confirm(ev)
         );
@@ -79,8 +79,8 @@ function lineBot(req, res) {
       //else if (ev.message.text == "test") {
       promises.push(
         //man_file(ev)
-        save_file(ev)
-        //test(ev)
+        //save_file(ev)
+        test(ev)
       );
     }
     else if (ev.type === "message") {
@@ -103,7 +103,7 @@ function lineBot(req, res) {
 }
 
 async function test(ev) {
-  ncmb.File.delete("abc.txt")
+  /*ncmb.File.delete("abc.txt")
     .then(function () {
       // 削除後処理
       return client.replyMessage(ev.replyToken, {
@@ -113,7 +113,7 @@ async function test(ev) {
     })
     .catch(function (err) {
       // エラー処理
-    });
+    });*/
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `this is a file`
@@ -236,7 +236,7 @@ async function exercise_menu(ev) {
           "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&feature=youtu.be"
         },
         {
-          "type": "text",
+          "type": "message",
           "label": "空",
           "text": "空"
         },
@@ -291,7 +291,7 @@ async function confirm(ev) {
           "data": JSON.stringify({ "action": "send_image" })
         },
         {
-          "type": "text",
+          "type": "message",
           "label": "空",
           "text": "空"
         },
