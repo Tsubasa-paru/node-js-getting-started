@@ -268,7 +268,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "運動する",
-          "data": JSON.stringify({ "action": "exercise" })
+          "data": JSON.stringify({ "action": "send_image" })
         },
         {
           "type": "postback",
