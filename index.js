@@ -56,7 +56,7 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    if (ev.type === "message" && ev.message.text == "メニュー" || ev.message.type == "sticker") {//messageのタイプ確認必須
+    if (ev.type === "message" && (ev.message.text == "メニュー" || ev.message.type == "sticker")) {//messageのタイプ確認必須
       promises.push(
         getmenu(ev)
       );
