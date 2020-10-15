@@ -60,7 +60,7 @@ function lineBot(req, res) {
       promises.push(
         getmenu(ev)
       );
-    } else if (ev.type === "postback") {
+    } else if (ev.type === "message") {
       promises.push(
         test(ev)
       );
