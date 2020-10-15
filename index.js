@@ -60,7 +60,7 @@ function lineBot(req, res) {
       promises.push(
         getmenu(ev)
       );
-    } else if (ev.type == "postback") {
+    } else if (ev.type === "postback") {
       if (JSON.parse(ev.postback.data).action == "exercise") {
         promises.push(
           test(ev)
@@ -265,11 +265,13 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "運動する",
+          "text": "ex",
           "data": JSON.stringify({ "action": "exercise" })
         },
         {
           "type": "postback",
           "label": "成果を確認する",
+          "text": "ex",
           "data": JSON.stringify({ "action": "confirm" })
         },
       ],
