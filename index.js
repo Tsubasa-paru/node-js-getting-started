@@ -232,11 +232,6 @@ async function confirm(ev) {
           //"text": "次へ",
           "data": JSON.stringify({ "action": "image" })
         },
-        {
-          "type": "text",
-          "label": "空",
-          "text": "空"
-        },
       ],
       "title": "電通大",
       "text": "選択してください"
