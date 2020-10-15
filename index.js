@@ -56,7 +56,7 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    if (ev.message.text == "メニュー" || ev.message.type == "sticker") {
+    if (ev.message.text == "メニュー") {//|| ev.message.type == "sticker"
       promises.push(
         getmenu(ev)
       );
@@ -260,11 +260,11 @@ async function getmenu(ev) {
     template: {
       "type": "buttons",
       "actions": [
-        /*{
+        {
           "type": "uri",
           "label": "タブレットの操作方法を確認する",
           "uri": "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/ICT%E3%83%AC%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E8%B3%87%E6%96%99.pdf"
-        },*/
+        },
         {
           "type": "postback",
           "label": "運動する",
