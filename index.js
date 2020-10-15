@@ -256,11 +256,16 @@ async function getmenu(ev) {
     template: {
       "type": "buttons",
       "actions": [
-        /*{
+        {
+          "type": "postback",
+          "label": "画像",
+          "data": JSON.stringify({ "action": "send_image" })
+        },
+        {
           "type": "uri",
           "label": "タブレット操作方法",
           "uri": "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/ICT%E3%83%AC%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E8%B3%87%E6%96%99.pdf"
-        },*/
+        },
         {
           "type": "postback",
           "label": "運動する",
