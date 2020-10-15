@@ -62,6 +62,9 @@ function lineBot(req, res) {
       );
     }
     else if (ev.type === "postback") {
+      promises.push(
+        getmenu(ev)
+      );
       if (JSON.parse(ev.postback.data).action == "exercise") {
         promises.push(
           exercise_menu(ev)
@@ -264,7 +267,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "運動する",
-          "data": JSON.stringify({ "action": "send_image" })
+          "data": JSON.stringify({ "action": "exercise" })
         },
         {
           "type": "postback",
@@ -304,7 +307,7 @@ async function confirm(ev) {
   )
 }
 
-async function echoman(ev) {
+/*async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
   const filename = pro.displayName + '_reply.csv';
   let data = read_csv(filename);
@@ -315,7 +318,7 @@ async function echoman(ev) {
     type: "text",
     text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
   })
-}
+}*/
 
 async function alart(ev) {
   return client.replyMessage(ev.replyToken, {
