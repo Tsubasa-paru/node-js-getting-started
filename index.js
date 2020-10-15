@@ -256,21 +256,21 @@ async function getmenu(ev) {
     template: {
       "type": "buttons",
       "actions": [
-        {
+        /*{
           "type": "uri",
           "label": "タブレット操作方法",
           "uri": "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/ICT%E3%83%AC%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E8%B3%87%E6%96%99.pdf"
-        },
+        },*/
         {
           "type": "postback",
           "label": "運動する",
           "data": JSON.stringify({ "action": "exercise" })
         },
-        /*{
+        {
           "type": "postback",
           "label": "成果を確認する",
           "data": JSON.stringify({ "action": "confirm" })
-        },*/
+        },
       ],
       "title": "運動支援メニューです",
       "text": "選択してください"
