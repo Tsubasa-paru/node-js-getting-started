@@ -56,19 +56,23 @@ function lineBot(req, res) {
   const promises = [];
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
-    if (ev.type === "message" && ev.message.text == "メニュー") {
+    if (ev.message.text == "メニュー") {//|| ev.message.type == "sticker"
       promises.push(
         getmenu(ev)
       );
-    } else if (ev.type === "postback") {
-      if (JSON.parse(ev.postback.data).action === "menu2") {
+    }
+    else if (ev.type === "postback") {
+      if (JSON.parse(ev.postback.data).action == "exercise") {
         promises.push(
-          confirm(ev)
+          exercise_menu(ev)
         );
-      }
-      else if (JSON.parse(ev.postback.data).action === "image") {
+      } else if (JSON.parse(ev.postback.data).action == "send_image") {
         promises.push(
           send_image(ev)
+        );
+      } else if (JSON.parse(ev.postback.data).action == "confirm") {
+        promises.push(
+          confirm(ev)
         );
       }
     }
@@ -76,8 +80,8 @@ function lineBot(req, res) {
       //else if (ev.message.text == "test") {
       promises.push(
         //man_file(ev)
-        save_file(ev)
-        //test(ev)
+        //save_file(ev)
+        test(ev)
       );
     }
     else if (ev.type === "message") {
@@ -91,7 +95,8 @@ function lineBot(req, res) {
     else {
       promises.push(
         //talk(ev)
-        echoman(ev)
+        //echoman(ev)
+        alart(ev)
       );
     }
   }
@@ -99,7 +104,7 @@ function lineBot(req, res) {
 }
 
 async function test(ev) {
-  ncmb.File.delete("abc.txt")
+  /*ncmb.File.delete("abc.txt")
     .then(function () {
       // 削除後処理
       return client.replyMessage(ev.replyToken, {
@@ -109,7 +114,7 @@ async function test(ev) {
     })
     .catch(function (err) {
       // エラー処理
-    });
+    });*/
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `this is a file`
@@ -219,6 +224,61 @@ async function send_image(ev) {
   });
 }
 
+async function exercise_menu(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "template",
+    altText: "自宅での運動",
+    template: {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "uri",
+          "label": "調布10の筋力トレーニング（中級）",
+          "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&feature=youtu.be"
+        },
+        {
+          "type": "message",
+          "label": "空",
+          "text": "空"
+        },
+      ],
+      "title": "自宅での運動",
+      "text": "行いたい運動を選択してください"
+    }
+  }
+  )
+}
+
+async function getmenu(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "template",
+    altText: "運動支援メニュー",
+    template: {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "uri",
+          "label": "タブレット操作方法",
+          "uri": "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/ICT%E3%83%AC%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E8%B3%87%E6%96%99.pdf"
+        },
+        {
+          "type": "postback",
+          "label": "運動する",
+          "data": JSON.stringify({ "action": "send_image" })
+        },
+        {
+          "type": "postback",
+          "label": "成果を確認する",
+          "data": JSON.stringify({ "action": "confirm" })
+        },
+      ],
+      "title": "運動支援メニューです",
+      "text": "選択してください"
+    }
+  }
+  )
+}
+
 async function confirm(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "template",
@@ -228,9 +288,8 @@ async function confirm(ev) {
       "actions": [
         {
           "type": "postback",
-          "label": "画像",
-          //"text": "次へ",
-          "data": JSON.stringify({ "action": "image" })
+          "label": "1週間の歩数",
+          "data": JSON.stringify({ "action": "send_image" })
         },
         {
           "type": "message",
@@ -238,70 +297,8 @@ async function confirm(ev) {
           "text": "空"
         },
       ],
-      "title": "電通大",
-      "text": "選択してください"
-    }
-  }
-  )
-}
-
-async function second_menu(ev) {
-  return client.replyMessage(ev.replyToken, {
-    type: "template",
-    altText: "this is a buttons template",
-    template: {
-      "type": "buttons",
-      "actions": [
-        {
-          "type": "uri",
-          "label": "uec homepage",
-          "uri": "https://www.uec.ac.jp/"
-        },
-        {
-          "type": "uri",
-          "label": "boss",
-          "uri": "https://www.uec.ac.jp/research/information/opal-ring/0006120.html"
-        },
-        {
-          "type": "postback",
-          "label": "画像",
-          //"text": "次へ",
-          "data": JSON.stringify({ "action": "image" })
-        },
-      ],
-      "title": "電通大",
-      "text": "選択してください"
-    }
-  }
-  )
-}
-
-async function getmenu(ev) {
-  return client.replyMessage(ev.replyToken, {
-    type: "template",
-    altText: "this is a buttons template",
-    template: {
-      "type": "buttons",
-      "actions": [
-        {
-          "type": "uri",
-          "label": "スクエアステップ",
-          "uri": "https://youtu.be/3O3mlcSgONE"
-        },
-        {
-          "type": "postback",
-          "label": "メニュー２",
-          //"text": "次へ",
-          "data": JSON.stringify({ "action": "menu2" })
-        },
-        {
-          "type": "uri",
-          "label": "加速度センサー",
-          "uri": "https://ksnk.jp/testgyro.html"
-        },
-      ],
-      "title": "おうちスクエアステップ案",
-      "text": "メニューです"
+      "title": "運動の成果",
+      "text": "確認したい成果を選択してください"
     }
   }
   )
@@ -317,5 +314,12 @@ async function echoman(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "text",
     text: `${reply_text}_${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+  })
+}
+
+async function alart(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "text",
+    text: "対応しておりませんので、他の方法を試してください"
   })
 }
