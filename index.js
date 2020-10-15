@@ -63,7 +63,7 @@ function lineBot(req, res) {
     } else if (ev.type === "postback") {
       if (JSON.parse(ev.postback.data).action === "menu2") {
         promises.push(
-          second_menu(ev)
+          confirm(ev)
         );
       }
       else if (JSON.parse(ev.postback.data).action === "image") {
@@ -217,6 +217,31 @@ async function send_image(ev) {
     originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/%E3%81%A4%E3%81%B0%E3%81%95_result.png",
     previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/%E3%81%A4%E3%81%B0%E3%81%95_result.png"
   });
+}
+
+async function confirm(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "template",
+    altText: "this is a buttons template",
+    template: {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "postback",
+          "label": "1週間の歩数",
+          "data": JSON.stringify({ "action": "send_image" })
+        },
+        {
+          "type": "text",
+          "label": "空",
+          "text": "空"
+        },
+      ],
+      "title": "運動の成果",
+      "text": "確認したい成果を選択してください"
+    }
+  }
+  )
 }
 
 async function second_menu(ev) {
