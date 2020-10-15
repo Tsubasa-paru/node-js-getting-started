@@ -58,15 +58,13 @@ function lineBot(req, res) {
     const ev = events[i];
     if (ev.message.text == "メニュー" || ev.message.type == "sticker") {
       promises.push(
-        //getmenu(ev)
-        //exercise_menu(ev)
-        confirm(ev)
+        getmenu(ev)
       );
     } else if (ev.type === "postback") {
       promises.push(
         test(ev)
       );
-      if (JSON.parse(ev.postback.data).action == "exercise") {
+      /*if (JSON.parse(ev.postback.data).action == "exercise") {
         promises.push(
           test(ev)
           //exercise_menu(ev)
@@ -80,7 +78,7 @@ function lineBot(req, res) {
           test(ev)
           //confirm(ev)
         );
-      }
+      }*/
     }
     else if (ev.message.type === "image") {
       //else if (ev.message.text == "test") {
