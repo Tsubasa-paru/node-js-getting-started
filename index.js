@@ -239,7 +239,7 @@ async function exercise_menu(ev) {
         {
           "type": "text",
           "label": "空",
-          "data": "空"
+          "text": "空"
         },
       ],
       "title": "自宅での運動",
@@ -269,7 +269,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "成果を確認する",
-          "data": JSON.stringify({ "action": "confirm" })
+          "text": JSON.stringify({ "action": "confirm" })
         },
       ],
       "title": "運動支援メニューです",
@@ -297,8 +297,8 @@ async function confirm(ev) {
           "data": "空"
         },
       ],
-      "title": "運動の成果"//,
-      //"text": "メニューです"
+      "title": "運動の成果",
+      "text": "確認したい成果を選択してください"
     }
   }
   )
