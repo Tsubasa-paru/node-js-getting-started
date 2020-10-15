@@ -227,37 +227,10 @@ async function confirm(ev) {
       "type": "buttons",
       "actions": [
         {
-          "type": "uri",
-          "label": "uec homepage",
-          "uri": "https://www.uec.ac.jp/"
-        },
-        {
-          "type": "uri",
-          "label": "boss",
-          "uri": "https://www.uec.ac.jp/research/information/opal-ring/0006120.html"
-        },
-        {
           "type": "postback",
           "label": "画像",
           //"text": "次へ",
           "data": JSON.stringify({ "action": "image" })
-        },
-      ],
-      "title": "電通大",
-      "text": "選択してください"
-    }
-  }
-  )
-  /*return client.replyMessage(ev.replyToken, {
-    type: "template",
-    altText: "this is a buttons template",
-    template: {
-      "type": "buttons",
-      "actions": [
-        {
-          "type": "postback",
-          "label": "1週間の歩数",
-          "data": JSON.stringify({ "action": "send_image" })
         },
         {
           "type": "text",
@@ -265,11 +238,11 @@ async function confirm(ev) {
           "text": "空"
         },
       ],
-      "title": "運動の成果",
-      "text": "確認したい成果を選択してください"
+      "title": "電通大",
+      "text": "選択してください"
     }
   }
-  )*/
+  )
 }
 
 async function second_menu(ev) {
