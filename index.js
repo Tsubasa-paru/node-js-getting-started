@@ -241,7 +241,7 @@ async function exercise_menu(ev) {
           "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&feature=youtu.be"
         },
         {
-          "type": "message",
+          "type": "text",
           "label": "空",
           "text": "空"
         },
@@ -296,7 +296,7 @@ async function confirm(ev) {
           "data": JSON.stringify({ "action": "send_image" })
         },
         {
-          "type": "message",
+          "type": "text",
           "label": "空",
           "text": "空"
         },
