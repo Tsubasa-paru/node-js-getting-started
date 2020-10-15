@@ -65,8 +65,7 @@ function lineBot(req, res) {
         promises.push(
           exercise_menu(ev)
         );
-      }
-      else if (JSON.parse(ev.postback.data).action === "send_image") {
+      } else if (JSON.parse(ev.postback.data).action === "send_image") {
         promises.push(
           send_image(ev)
         );
@@ -269,7 +268,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "成果を確認する",
-          "text": JSON.stringify({ "action": "confirm" })
+          "data": JSON.stringify({ "action": "confirm" })
         },
       ],
       "title": "運動支援メニューです",
@@ -294,7 +293,7 @@ async function confirm(ev) {
         {
           "type": "text",
           "label": "空",
-          "data": "空"
+          "text": "空"
         },
       ],
       "title": "運動の成果",
