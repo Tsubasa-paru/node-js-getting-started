@@ -199,10 +199,9 @@ async function exercise_menu(ev) {
           "data": JSON.stringify({ "action": "chofu" })
         },
         {
-          "type": "message",
+          "type": "postback",
           "label": "準備中",
-          "text": "準備中"
-          //"data": JSON.stringify({ "action": "chofu" })
+          "data": JSON.stringify({ "action": "inprogress" })
         },
       ],
       "title": "運動メニューです",
@@ -292,9 +291,9 @@ async function confirm(ev) {
           "data": JSON.stringify({ "action": "send_image" })
         },
         {
-          "type": "message",
+          "type": "postback",
           "label": "準備中",
-          //"text": "空"
+          "data": JSON.stringify({ "action": "inprogress" })
         },
       ],
       "title": "運動の成果",
