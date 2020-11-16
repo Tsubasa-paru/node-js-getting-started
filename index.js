@@ -166,10 +166,14 @@ async function send_image(ev) {
   const pro = await client.getProfile(ev.source.userId);
   const name = pro.displayName;
   return client.replyMessage(ev.replyToken, {
+    type: "text",
+    text: name
+  })
+  /*return client.replyMessage(ev.replyToken, {
     type: "image",
     originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "result.png",
     previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "result.png"
-  });
+  });*/
 }
 
 async function exercise_menu(ev) {
@@ -184,7 +188,7 @@ async function exercise_menu(ev) {
           "label": "初級",
           "text": "https://www.youtube.com/watch?v=xUb6BN_Lixk"
         },
-        /*{
+        {
           "type": "uri",
           "label": "中級",
           "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&t=533s"
@@ -193,7 +197,7 @@ async function exercise_menu(ev) {
           "type": "uri",
           "label": "上級",
           "uri": "https://www.youtube.com/watch?v=yeQBkH9EKNM"
-        },*/
+        },
       ],
       "title": "調布10の筋力トレーニング",
       "text": "難易度を選択してください"
