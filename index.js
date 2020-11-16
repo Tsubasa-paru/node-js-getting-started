@@ -220,6 +220,13 @@ async function exercise_menu(ev) {
 }
 
 async function chofu(ev) {
+  var Log = ncmb.DataStore("Exercise");
+  var log = new Log();
+  log.set("user", (await client.getProfile(ev.source.userId)).displayName)
+    .set("message", ev.message.text)
+    .set("userID", ev.source.userId)
+    .set("menu", "10トレ")
+  log.save()
   return client.replyMessage(ev.replyToken, {
     type: "template",
     altText: "調布10の筋力トレーニング",
@@ -269,7 +276,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "成果を確認する",
-          "data": JSON.stringify({ "action": "send_image" })
+          "data": JSON.stringify({ "action": "confirm" })
         },
       ],
       "title": "運動支援メニューです",
@@ -293,8 +300,8 @@ async function confirm(ev) {
         },
         {
           "type": "message",
-          "label": "空",
-          "text": "空"
+          "label": "準備中",
+          //"text": "空"
         },
       ],
       "title": "運動の成果",
