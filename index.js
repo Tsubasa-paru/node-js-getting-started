@@ -210,14 +210,9 @@ async function chofu(ev) {
       "type": "buttons",
       "actions": [
         {
-          "type": "message",
-          "label": "空",
-          "text": "空"
-        },
-        /*{
           "type": "uri",
           "label": "初級",
-          "text": "https://www.youtube.com/watch?v=xUb6BN_Lixk"
+          "uri": "https://www.youtube.com/watch?v=xUb6BN_Lixk"
         },
         {
           "type": "uri",
@@ -228,7 +223,7 @@ async function chofu(ev) {
           "type": "uri",
           "label": "上級",
           "uri": "https://www.youtube.com/watch?v=yeQBkH9EKNM"
-        },*/
+        },
       ],
       "title": "調布10の筋力トレーニング",
       "text": "難易度を選択してください"
