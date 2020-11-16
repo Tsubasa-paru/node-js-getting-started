@@ -162,88 +162,41 @@ async function talk(ev) {
   store_log(ev);
 }
 
-/*async function save_file(ev) {
-  client.getMessageContent(ev.message.id)
-    .then((stream) => {
-      stream.on('data', (chunk) => {
-        var File = ncmb.DataStore("file");
-        var file = new File();
-        log.set("user", (await client.getProfile(ev.source.userId)).displayName)
-          .set("file", chunk)
-          .set("uri", "https://api-data.line.me/v2/bot/message/" + ev.message.id + "/content")
-        log.save()
-          .then(function () {
-            // 保存後の処理
-            return client.replyMessage(ev.replyToken, {
-              type: "text",
-              text: `succeeded`
-            })
-          })
-          .catch(function () {
-            // エラー処理
-            return client.replyMessage(ev.replyToken, {
-              type: "text",
-              text: `error`
-            })
-          });
-        fs.readFile(chunk, function (err, data) {
-          if (err) throw err;
-          var name = "file.jpg";
-          ncmb.File.upload(name, data)
-            .then(function (data) {
-              // アップロード後処理
-              return client.replyMessage(ev.replyToken, {
-                type: "text",
-                text: `succeeded`
-              })
-            })
-            .catch(function (err) {
-              // エラー処理
-              return client.replyMessage(ev.replyToken, {
-                type: "text",
-                text: `upload error`
-              })
-            });
-        });
-      });
-      stream.on('error', (err) => {
-        // error handling
-        return client.replyMessage(ev.replyToken, {
-          type: "text",
-          text: `file error`
-        })
-      });
-    });
-}*/
-
 async function send_image(ev) {
+  const pro = await client.getProfile(ev.source.userId);
+  const name = pro.displayName;
   return client.replyMessage(ev.replyToken, {
     type: "image",
-    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/%E3%81%A4%E3%81%B0%E3%81%95_result.png",
-    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/%E3%81%A4%E3%81%B0%E3%81%95_result.png"
+    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "_result.png",
+    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/"name"_result.png"
   });
 }
 
 async function exercise_menu(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "template",
-    altText: "自宅での運動",
+    altText: "調布10の筋力トレーニング",
     template: {
       "type": "buttons",
       "actions": [
         {
           "type": "uri",
-          "label": "調布10の筋力トレーニング（中級）",
-          "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&feature=youtu.be"
+          "label": "初級",
+          "text": "https://www.youtube.com/watch?v=xUb6BN_Lixk"
         },
         {
-          "type": "message",
-          "label": "空",
-          "text": "空"
+          "type": "uri",
+          "label": "中級",
+          "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&t=533s"
+        },
+        {
+          "type": "uri",
+          "label": "上級",
+          "uri": "https://www.youtube.com/watch?v=yeQBkH9EKNM"
         },
       ],
-      "title": "自宅での運動",
-      "text": "行いたい運動を選択してください"
+      "title": "調布10の筋力トレーニング",
+      "text": "難易度を選択してください"
     }
   }
   )
@@ -256,11 +209,11 @@ async function getmenu(ev) {
     template: {
       "type": "buttons",
       "actions": [
-        {
+        /*{
           "type": "uri",
           "label": "タブレット操作方法",
           "uri": "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/ICT%E3%83%AC%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E8%B3%87%E6%96%99.pdf"
-        },
+        },*/
         {
           "type": "postback",
           "label": "運動する",
