@@ -41,7 +41,7 @@ async function reminder() {
                     },
                     {
                         "type": "postback",
-                        "label": "10000歩以上",
+                        "label": "10001歩以上",
                         "data": JSON.stringify({ "action": "over10" })
                     },
                 ],

@@ -317,7 +317,7 @@ async function thank(ev) {
   comments.fetchAll()
     .then(function (results) {
       r = Math.floor(Math.random() * results.length);
-      comment = results[r].get("comments");
+      comment = "aaa";//results[r].get("comments");
     })
 
   return client.replyMessage(ev.replyToken, {
