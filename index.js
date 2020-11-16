@@ -5,7 +5,7 @@ const ncmb = new NCMB("a044cf8e6e945d7e92493c2d739e0da050fc55b4134366094cd4311be
   "d29b85f46dc1dc8853c69cce381e140f750bbcc93de49b21878a935983e8634f");
 const stream = require("stream");
 
-const filename = 'reply.csv';
+/*const filename = 'reply.csv';
 
 function read_csv(file) {
   let data = fs.readFileSync(file);
@@ -26,7 +26,7 @@ function reply(text, file) {//こんにちはだけ判別してくれない
     }
   }
   return reply_text;
-}
+}*/
 
 const express = require("express");
 const path = require("path");
@@ -97,25 +97,17 @@ function lineBot(req, res) {
       }
     }
     else if (ev.message.type === "image") {
-      //else if (ev.message.text == "test") {
       promises.push(
-        //man_file(ev)
-        //save_file(ev)
         test(ev)
       );
     }
     else if (ev.type === "message") {
       promises.push(
         talk(ev)
-        //echoman(ev)
-        //test(ev)
-        //store_log(ev)
       );
     }
     else {
       promises.push(
-        //talk(ev)
-        //echoman(ev)
         alart(ev)
       );
     }
@@ -206,11 +198,11 @@ async function exercise_menu(ev) {
           "label": "10の筋力トレーニング",
           "data": JSON.stringify({ "action": "chofu" })
         },
-        /*{
-          "type": "postback",
-          "label": "10の筋力トレーニング",
-          "data": JSON.stringify({ "action": "chofu" })
-        },*/
+        {
+          "type": "message",
+          "label": "準備中",
+          //"data": JSON.stringify({ "action": "chofu" })
+        },
       ],
       "title": "運動メニューです",
       "text": "選択してください"
