@@ -167,7 +167,7 @@ async function send_image(ev) {
   const name = pro.displayName;
   return client.replyMessage(ev.replyToken, {
     type: "text",
-    text: name
+    text: name + "result"
   })
   /*return client.replyMessage(ev.replyToken, {
     type: "image",
