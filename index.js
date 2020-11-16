@@ -313,11 +313,10 @@ async function thank(ev) {
   log.save()
 
   var comments = ncmb.DataStore("Comments");
-  var comment;
   comments.fetchAll()
     .then(function (results) {
       r = Math.floor(Math.random() * results.length);
-      comment = results[r].get("comments");
+      var comment = results[r].get("comments");
       return client.replyMessage(ev.replyToken, {
         type: "text",
         text: "報告ありがとうございます！\n" + comment
