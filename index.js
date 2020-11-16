@@ -317,13 +317,12 @@ async function thank(ev) {
   comments.fetchAll()
     .then(function (results) {
       r = Math.floor(Math.random() * results.length);
-      comment = "aaa";//results[r].get("comments");
+      comment = results[r].get("comments");
+      return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: "報告ありがとうございます！\n" + comment
+      })
     })
-
-  return client.replyMessage(ev.replyToken, {
-    type: "text",
-    text: "報告ありがとうございます！\n" + comment
-  })
 }
 
 /*async function echoman(ev) {
