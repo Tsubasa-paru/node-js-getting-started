@@ -74,6 +74,10 @@ function lineBot(req, res) {
         promises.push(
           confirm(ev)
         );
+      } else if (JSON.parse(ev.postback.data).action === "chofu") {
+        promises.push(
+          chofu(ev)
+        );
       }
     }
     else if (ev.message.type === "image") {
@@ -176,6 +180,31 @@ async function send_image(ev) {
 async function exercise_menu(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "template",
+    altText: "運動メニュー",
+    template: {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "postback",
+          "label": "10の筋力トレーニング",
+          "data": JSON.stringify({ "action": "chofu" })
+        },
+        {
+          "type": "postback",
+          "label": "10の筋力トレーニング",
+          "data": JSON.stringify({ "action": "chofu" })
+        },
+      ],
+      "title": "運動メニューです",
+      "text": "選択してください"
+    }
+  }
+  )
+}
+
+async function chofu(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "template",
     altText: "調布10の筋力トレーニング",
     template: {
       "type": "buttons",
@@ -223,7 +252,7 @@ async function getmenu(ev) {
         {
           "type": "postback",
           "label": "成果を確認する",
-          "data": JSON.stringify({ "action": "confirm" })
+          "data": JSON.stringify({ "action": "send_image" })
         },
       ],
       "title": "運動支援メニューです",
