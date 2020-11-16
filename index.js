@@ -165,15 +165,12 @@ async function talk(ev) {
 async function send_image(ev) {
   const pro = await client.getProfile(ev.source.userId);
   const name = pro.displayName;
+  const filename = name + "result.png"
   return client.replyMessage(ev.replyToken, {
-    type: "text",
-    text: name + "result"
-  })
-  /*return client.replyMessage(ev.replyToken, {
     type: "image",
-    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "result.png",
-    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "result.png"
-  });*/
+    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + filename,
+    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + filename
+  });
 }
 
 async function exercise_menu(ev) {
