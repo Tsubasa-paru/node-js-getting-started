@@ -78,6 +78,22 @@ function lineBot(req, res) {
         promises.push(
           chofu(ev)
         );
+      } else if (JSON.parse(ev.postback.data).action === "4") {
+        promises.push(
+          thank(ev)
+        );
+      } else if (JSON.parse(ev.postback.data).action === "7") {
+        promises.push(
+          thank(ev)
+        );
+      } else if (JSON.parse(ev.postback.data).action === "10") {
+        promises.push(
+          thank(ev)
+        );
+      } else if (JSON.parse(ev.postback.data).action === "over10") {
+        promises.push(
+          thank(ev)
+        );
       }
     }
     else if (ev.message.type === "image") {
@@ -286,6 +302,20 @@ async function confirm(ev) {
     }
   }
   )
+}
+
+async function thank(ev) {
+  steps = JSON.parse(ev.postback.data).action;
+  var Log = ncmb.DataStore("Steps");
+  var log = new Log();
+  log.set("user", (await client.getProfile(ev.source.userId)).displayName)
+    .set("steps", steps)
+    .set("userID", ev.source.userId)
+  log.save()
+  return client.replyMessage(ev.replyToken, {
+    type: "text",
+    text: "報告ありがとうございます！"
+  })
 }
 
 /*async function echoman(ev) {

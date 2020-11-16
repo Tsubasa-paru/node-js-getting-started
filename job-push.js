@@ -25,13 +25,28 @@ async function reminder() {
                 "type": "buttons",
                 "actions": [
                     {
-                        "type": "message",
-                        "label": "テスト",
-                        "text": "テスト"
+                        "type": "postback",
+                        "label": "4000歩以下",
+                        "data": JSON.stringify({ "action": "4" })
+                    },
+                    {
+                        "type": "postback",
+                        "label": "4001~7000歩",
+                        "data": JSON.stringify({ "action": "7" })
+                    },
+                    {
+                        "type": "postback",
+                        "label": "7001~10000歩",
+                        "data": JSON.stringify({ "action": "10" })
+                    },
+                    {
+                        "type": "postback",
+                        "label": "10000歩以上",
+                        "data": JSON.stringify({ "action": "over10" })
                     },
                 ],
-                "title": "リマインダーテストです",
-                "text": "押してください"
+                "title": "本日の歩数を教えてください",
+                "text": "活動量計のボタンを3回押して、歩数の確認お願いします。"
             }
         })
     }
