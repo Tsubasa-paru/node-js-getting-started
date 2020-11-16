@@ -125,33 +125,6 @@ async function test(ev) {
   })
 }
 
-async function reminder(ev) {
-  const users = ["", ""];
-  for (let i = 0; i < users.length; i++) {
-    bot.pushMessage(users[i], {
-      type: "template",
-      altText: "運動メニュー",
-      template: {
-        "type": "buttons",
-        "actions": [
-          {
-            "type": "postback",
-            "label": "10の筋力トレーニング",
-            "data": JSON.stringify({ "action": "chofu" })
-          },
-          /*{
-            "type": "postback",
-            "label": "10の筋力トレーニング",
-            "data": JSON.stringify({ "action": "chofu" })
-          },*/
-        ],
-        "title": "運動メニューです",
-        "text": "選択してください"
-      }
-    })
-  }
-}
-
 async function store_log(ev) {
   var Log = ncmb.DataStore("Log");
   var log = new Log();

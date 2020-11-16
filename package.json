@@ -9,7 +9,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "job-push": "node job-push.js"
   },
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
