@@ -201,6 +201,7 @@ async function exercise_menu(ev) {
         {
           "type": "message",
           "label": "準備中",
+          "text": "準備中"
           //"data": JSON.stringify({ "action": "chofu" })
         },
       ],
