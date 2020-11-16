@@ -167,8 +167,8 @@ async function send_image(ev) {
   const name = pro.displayName;
   return client.replyMessage(ev.replyToken, {
     type: "image",
-    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "_result.png",
-    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/" + name + "_result.png"
+    originalContentUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/_result.png",
+    previewImageUrl: "https://mbaas.api.nifcloud.com/2013-09-01/applications/Z396PcI7dL5wDYZY/publicFiles/_result.png"
   });
 }
 
