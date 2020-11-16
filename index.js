@@ -316,7 +316,7 @@ async function thank(ev) {
   var comment;
   comments.fetchAll()
     .then(function (results) {
-      r = Math.random(results.length);
+      r = Math.floor(Math.random() * results.length);
       comment = results[r].get("comments");
     })
 
