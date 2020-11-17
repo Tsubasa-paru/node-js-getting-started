@@ -16,7 +16,7 @@ main();//メインとなる処理を適当に
 
 
 async function reminder() {
-    const users = ["U56de8fce231795fd906d98fe098669c6",];// "U0859d99f0c1c06059e13965f7c21123a"];
+    const users = ["U56de8fce231795fd906d98fe098669c6", "U0859d99f0c1c06059e13965f7c21123a", "U5b41a3b97ef5633ee553892c6901b099"];
     for (let i = 0; i < users.length; i++) {
         bot.pushMessage(users[i], {
             type: "template",
