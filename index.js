@@ -219,6 +219,20 @@ async function log_ex(ev) {
     .set("userID", ev.source.userId)
     .set("menu", "10トレ")
   log.save()
+    .then(function () {
+      // 保存後の処理
+      /*return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `succeeded`
+      })*/
+    })
+    .catch(function () {
+      // エラー処理
+      /*return client.replyMessage(ev.replyToken, {
+        type: "text",
+        text: `error`
+      })*/
+    });
 }
 
 async function chofu(ev) {
