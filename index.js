@@ -221,10 +221,10 @@ async function log_ex(ev) {
   log.save()
     .then(function () {
       // 保存後の処理
-      /*return client.replyMessage(ev.replyToken, {
+      return client.replyMessage(ev.replyToken, {
         type: "text",
         text: `succeeded`
-      })*/
+      })
     })
     .catch(function () {
       // エラー処理
