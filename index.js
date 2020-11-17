@@ -217,7 +217,7 @@ async function log_ex(ev) {
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
     .set("message", ev.message.text)
     .set("userID", ev.source.userId)
-    .set("menu", "10トレ")
+  //.set("menu", "10トレ")
   log.save()
     .then(function () {
       // 保存後の処理
