@@ -217,7 +217,7 @@ async function chofu(ev) {
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
     .set("message", ev.message.text)
     .set("userID", ev.source.userId)
-    .set("menu", "10トレ")
+  //.set("menu", "10トレ")
   log.save()
   return client.replyMessage(ev.replyToken, {
     type: "template",
