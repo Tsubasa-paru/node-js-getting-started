@@ -211,15 +211,18 @@ async function exercise_menu(ev) {
   )
 }
 
-async function chofu(ev) {
+async function log_ex(ev) {
   var Log = ncmb.DataStore("Exercise");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
     .set("message", ev.message.text)
     .set("userID", ev.source.userId)
     .set("menu", "10トレ")
-  log.save();
+  log.save()
+}
 
+async function chofu(ev) {
+  log_ex(ex);
   return client.replyMessage(ev.replyToken, {
     type: "template",
     altText: "調布10の筋力トレーニング",
