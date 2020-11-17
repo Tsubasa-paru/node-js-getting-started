@@ -212,42 +212,42 @@ async function exercise_menu(ev) {
 }
 
 async function chofu(ev) {
-  var Log = ncmb.DataStore("Exercise");
+  /*var Log = ncmb.DataStore("Exercise");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
     .set("message", ev.message.text)
     .set("userID", ev.source.userId)
-  //.set("menu", "10トレ")
+    .set("menu", "10トレ")
   log.save()
-    .then(function () {
-      return client.replyMessage(ev.replyToken, {
-        type: "template",
-        altText: "調布10の筋力トレーニング",
-        template: {
-          "type": "buttons",
-          "actions": [
-            {
-              "type": "uri",
-              "label": "初級",
-              "uri": "https://www.youtube.com/watch?v=xUb6BN_Lixk"
-            },
-            {
-              "type": "uri",
-              "label": "中級",
-              "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&t=533s"
-            },
-            {
-              "type": "uri",
-              "label": "上級",
-              "uri": "https://www.youtube.com/watch?v=yeQBkH9EKNM"
-            },
-          ],
-          "title": "調布10の筋力トレーニング",
-          "text": "難易度を選択してください"
-        }
-      }
-      )
-    })
+    .then(function () {*/
+  return client.replyMessage(ev.replyToken, {
+    type: "template",
+    altText: "調布10の筋力トレーニング",
+    template: {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "uri",
+          "label": "初級",
+          "uri": "https://www.youtube.com/watch?v=xUb6BN_Lixk"
+        },
+        {
+          "type": "uri",
+          "label": "中級",
+          "uri": "https://www.youtube.com/watch?v=IBc4US3iiiY&t=533s"
+        },
+        {
+          "type": "uri",
+          "label": "上級",
+          "uri": "https://www.youtube.com/watch?v=yeQBkH9EKNM"
+        },
+      ],
+      "title": "調布10の筋力トレーニング",
+      "text": "難易度を選択してください"
+    }
+  }
+  )
+  //})
 }
 
 async function getmenu(ev) {
