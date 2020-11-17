@@ -212,14 +212,14 @@ async function exercise_menu(ev) {
 }
 
 async function chofu(ev) {
-  /*var Log = ncmb.DataStore("Exercise");
+  var Log = ncmb.DataStore("Exercise");
   var log = new Log();
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
     .set("message", ev.message.text)
     .set("userID", ev.source.userId)
     .set("menu", "10トレ")
   log.save()
-    .then(function () {*/
+
   return client.replyMessage(ev.replyToken, {
     type: "template",
     altText: "調布10の筋力トレーニング",
@@ -247,7 +247,6 @@ async function chofu(ev) {
     }
   }
   )
-  //})
 }
 
 async function getmenu(ev) {
