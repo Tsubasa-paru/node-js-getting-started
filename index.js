@@ -236,6 +236,7 @@ async function log_ex(ev) {
 }
 
 async function chofu(ev) {
+  log_ex(ev);
   return client.replyMessage(ev.replyToken, {
     type: "template",
     altText: "調布10の筋力トレーニング",
@@ -262,8 +263,7 @@ async function chofu(ev) {
       "text": "難易度を選択してください"
     }
   }
-  );
-  log_ex(ex);
+  )
 }
 
 async function getmenu(ev) {
