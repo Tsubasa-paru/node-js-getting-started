@@ -217,7 +217,7 @@ async function log_ex(ev) {
   log.set("user", (await client.getProfile(ev.source.userId)).displayName)
     .set("message", ev.message.text)
     .set("userID", ev.source.userId)
-  //.set("menu", "10トレ")
+    .set("menu", "10トレ")
   log.save()
     .then(function () {
       // 保存後の処理
@@ -236,7 +236,6 @@ async function log_ex(ev) {
 }
 
 async function chofu(ev) {
-  log_ex(ex);
   return client.replyMessage(ev.replyToken, {
     type: "template",
     altText: "調布10の筋力トレーニング",
@@ -263,7 +262,8 @@ async function chofu(ev) {
       "text": "難易度を選択してください"
     }
   }
-  )
+  );
+  log_ex(ex);
 }
 
 async function getmenu(ev) {
